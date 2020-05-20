@@ -9,17 +9,17 @@ from config import Config
 
 
 # TODO Change to Dataset API
-sketchy_dir = '../training_data/sketchy'
-flickr_dir = '../training_data/flickr_output'
+sketchy_dir = '../../256x256'
+# flickr_dir = '../training_data/flickr_output'
 
 
 paired_filenames_1 = [os.path.join(sketchy_dir, f) for f in os.listdir(sketchy_dir)
                       if os.path.isfile(os.path.join(sketchy_dir, f))]
-paired_filenames_2 = [os.path.join(flickr_dir, f) for f in os.listdir(flickr_dir)
-                      if os.path.isfile(os.path.join(flickr_dir, f))]
+#paired_filenames_2 = [os.path.join(flickr_dir, f) for f in os.listdir(flickr_dir)
+#                      if os.path.isfile(os.path.join(flickr_dir, f))]
 
 print("paired file sketchy num: %d" % len(paired_filenames_1))
-print("paired file flickr num: %d" % len(paired_filenames_2))
+# print("paired file flickr num: %d" % len(paired_filenames_2))
 
 # build class map
 class_mapping = []
@@ -32,13 +32,13 @@ for name in paired_filenames_1:
     if class_id not in class_mapping:
         class_mapping.append(class_id)
 class_mapping = sorted(class_mapping)
-for name in paired_filenames_2:
-    name = os.path.splitext(os.path.split(name)[1])[0].split('_coco_')[0]
-    class_id = classes_id.index(name)
-    if class_id not in class_mapping:
-        print(name)
-        raise RuntimeError
-num_classes = len(class_mapping)
+# for name in paired_filenames_2:
+#    name = os.path.splitext(os.path.split(name)[1])[0].split('_coco_')[0]
+#    class_id = classes_id.index(name)
+#    if class_id not in class_mapping:
+#        print(name)
+#        raise RuntimeError
+# num_classes = len(class_mapping)
 
 
 def get_num_classes():
